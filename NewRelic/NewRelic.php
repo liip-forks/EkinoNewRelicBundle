@@ -26,13 +26,13 @@ class NewRelic
     /**
      * @param string $name
      * @param string $apiKey
-     * @param string $dataApiKey
+     * @param string $licenseKey
      */
-    public function __construct($name, $apiKey, $dataApiKey = null)
+    public function __construct($name, $apiKey, $licenseKey = null)
     {
         $this->name             = $name;
         $this->apiKey           = $apiKey;
-        $this->dataApiKey       = $dataApiKey;
+        $this->licenseKey       = $licenseKey;
         $this->customMetrics    = array();
         $this->customParameters = array();
     }
@@ -148,9 +148,9 @@ class NewRelic
     /**
      * @return string
      */
-    public function getDataApiKey()
+    public function getLicenseKey()
     {
-        return $this->dataApiKey;
+        return $this->licenseKey;
     }
 
 }
