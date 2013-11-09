@@ -73,7 +73,7 @@ class NotifyDeploymentCommand extends Command
     {
         $newrelic = $this->newrelic;
 
-        $status = $this->performRequest($newrelic->getApiKey(), $this->createPayload($newrelic, $input));
+        $status = $this->performRequest($newrelic->getDataApiKey(), $this->createPayload($newrelic, $input));
 
         switch($status)
         {
@@ -105,11 +105,12 @@ class NotifyDeploymentCommand extends Command
                 'header'           => implode("\r\n", $headers),
                 'content'          => $payload,
                 'ignore_errors'    => true,
+                'follow_location'  => false
             )
         );
 
         $level = error_reporting(0);
-        $content = file_get_contents('https://api.newrelic.com/deployments.xml', 0, stream_context_create($context));
+        $content = file_get_contents('https://rpm.newrelic.com/deployments.xml', 0, stream_context_create($context));
         error_reporting($level);
         if (false === $content) {
             $error = error_get_last();
