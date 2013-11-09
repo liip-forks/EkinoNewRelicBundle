@@ -105,6 +105,7 @@ class NotifyDeploymentCommand extends Command
                 'header'           => implode("\r\n", $headers),
                 'content'          => $payload,
                 'ignore_errors'    => true,
+                'follow_location'  => false
             )
         );
 
